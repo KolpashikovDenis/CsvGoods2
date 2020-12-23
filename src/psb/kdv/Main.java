@@ -46,7 +46,11 @@ public class Main {
             cities.add(s[1].trim());
         }
         Set<String> uniqueCities = new HashSet<String>(cities);
-
+        StringBuilder sb = new StringBuilder("Артикул;Наименование");
+        for(String c: uniqueCities){
+            sb.append(";"+c);
+        }
+        sb.append(";Цена за шт;Суммарная стоимость позиции\n");
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(mwbList.get(0))), "windows-1251"));
         String line = br.readLine();
         while((line = br.readLine()) != null) {
@@ -62,6 +66,13 @@ public class Main {
                 String NomenclatureWBMW = ss[0].trim();
                 String WarehouseCity = ss[1].trim();
                 int count = Integer.parseInt(ss[2].trim());
+                if(Articul.equals(NomenclatureWBMW)){
+                    for(String c: uniqueCities){
+                        if(c.equals(WarehouseCity)){
+
+                        }
+                    }
+                }
                 System.out.println("-");
             }
 
