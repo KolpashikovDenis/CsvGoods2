@@ -1,12 +1,10 @@
 package psb.kdv;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 public class Main {
 
@@ -38,6 +36,17 @@ public class Main {
         }
         Collections.reverse(barList);
 
+        List<String> cities = new ArrayList<String>();
+        List<String> list = new ArrayList<String>();
+        BufferedReader brr = new BufferedReader(new InputStreamReader(new FileInputStream(new File(barList.get(0))), "utf-8"));
+        String lline = brr.readLine();
+        while((lline = brr.readLine()) != null){
+            list.add(lline);
+            String s[] = lline.split(";");
+            cities.add(s[1].trim());
+        }
+        Set<String> uniqueCities = new HashSet<String>(cities);
+
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(mwbList.get(0))), "windows-1251"));
         String line = br.readLine();
         while((line = br.readLine()) != null) {
@@ -48,17 +57,25 @@ public class Main {
             double CostPrice = Double.parseDouble(s[3].trim());
             double CostAmount = Double.parseDouble(s[4].trim());
 
-            BufferedReader brr = new BufferedReader(new InputStreamReader(new FileInputStream(new File(barList.get(0))), "windows-1251"));
-            String lline = br.readLine();
-            while((lline = br.readLine()) != null){
-                String ss[] = line.split(";");
+            for(String ln: list){
+                String[] ss = ln.split(";");
                 String NomenclatureWBMW = ss[0].trim();
                 String WarehouseCity = ss[1].trim();
-                int Count = Integer.parseInt(ss[2].trim());
-                if(Articul.equals(NomenclatureWBMW)){
-
-                }
+                int count = Integer.parseInt(ss[2].trim());
+                System.out.println("-");
             }
+
+//            BufferedReader brr = new BufferedReader(new InputStreamReader(new FileInputStream(new File(barList.get(0))), "windows-1251"));
+//            String lline = br.readLine();
+//            while((lline = br.readLine()) != null){
+//                String ss[] = lline.split(";");
+//                String NomenclatureWBMW = ss[0].trim();
+//                String WarehouseCity = ss[1].trim();
+//                double Count = Double.parseDouble(ss[2].trim());
+//                if(Articul.equals(NomenclatureWBMW)){
+//                    System.out.println(lline);
+//                }
+//            }
         }
     }
 }
